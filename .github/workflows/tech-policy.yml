@@ -1,0 +1,36 @@
+# 科技政策播报 · GitHub Actions 工作流（独立于 AI 播报）
+# 每天 UTC 01:47 = 北京 09:47（比 AI 播报晚半小时，错峰）
+
+name: tech-policy-broadcast
+
+on:
+  schedule:
+    - cron: "47 1 * * *"        # UTC 01:47 = 北京 09:47
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  broadcast:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - name: run tech-policy broadcast
+        env:
+          PARALLIGHT_API_KEY: ${{ secrets.PARALLIGHT_API_KEY }}
+          PARALLIGHT_BASE_URL: https://token.parallight.ai/api/llm
+          PARALLIGHT_MODEL: claude-sonnet-4-6
+          GITHUB_PERSONAL_ACCESS_TOKEN: ${{ secrets.GH_BROADCAST_TOKEN }}
+          FEISHU_WEBHOOK_URL: ${{ secrets.FEISHU_WEBHOOK_URL }}
+        run: python run_broadcast.py --config config_tech_policy.yaml
+      - name: persist digest
+        run: |
+          git config user.name "broadcast-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add digest.md 2>/dev/null || true
+          git commit -m "digest (tech-policy) $(date -u +%F)" 2>/dev/null && git push || echo "no change to commit"

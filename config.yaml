@@ -1,0 +1,33 @@
+# ───────────────────────────────────────────────────────────────
+# 你关心什么？改这个文件，就改了播报内容。
+# 课后 challenge 1（必做）就是把它改成「你」真正关心的方向。
+# 注意：webhook URL / token 这类凭据绝不写在这里（这个文件会进 git）——放 .env。
+# ───────────────────────────────────────────────────────────────
+
+interests:
+  # 你想追的关键词（用于 HN 搜索 / arXiv 过滤 / 排序相关度）
+  # 你的方向：AI 算法 / 港口调度+物流 / 物联网
+  keywords: ["deep learning", "transformer", "reinforcement learning", "neural architecture search",
+             "port scheduling", "logistics optimization", "supply chain", "vehicle routing", "container terminal",
+             "IoT", "edge computing", "sensor network", "embedded system"]
+  # arXiv 分类：cs.AI=人工智能, cs.LG=机器学习, math.OC=运筹优化, cs.NI=网络, cs.DC=分布式
+  arxiv_categories: ["cs.AI", "cs.LG", "math.OC", "cs.NI", "cs.DC"]
+
+sources:
+  arxiv:           { enabled: true, max_results: 8 }
+  hackernews:      { enabled: true, top_n: 15, min_points: 50 }
+  github_trending: { enabled: true, language: "python", since: "daily", top_n: 10 }
+
+limits:
+  # 隔离纪律：每个数据源的子 agent 最多回传这么多 token 的摘要给主流程
+  # （收紧到 600 → 隔离版主上下文稳定地小，和 --naive 的对照一眼可见）
+  per_source_summary_tokens: 600
+  max_items: 6
+
+delivery:
+  # 选你的投递渠道（按「你在哪发、你在哪读」选——这是 kp-04 的部署决策）：
+  #   gmail  — 邮件（课堂演示默认；在国外最方便。Gmail SMTP 需「应用专用密码」，见 .env.example）
+  #   feishu — 飞书自定义机器人（在大陆的同学推荐：app 里即时收到）
+  #   local  — 只写本地 digest.md，零外部依赖（没配凭据时的兜底）
+  channel: feishu
+  title: "📡 今日播报 · AI算法+物流+物联网"

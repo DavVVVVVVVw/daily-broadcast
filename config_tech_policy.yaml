@@ -1,0 +1,51 @@
+# ───────────────────────────────────────────────────────────────
+# 科技政策播报 · 中文官方渠道
+# 源：中国政府网政策 / 新华网科技 / 科技日报 / 科技部
+# ───────────────────────────────────────────────────────────────
+
+interests:
+  keywords: ["科技创新", "产业发展", "政策扶持", "数字化转型", "人工智能",
+             "新能源", "智能制造", "芯片半导体", "数字经济", "绿色低碳",
+             "专精特新", "科技体制改革", "成果转化", "人才引进", "新质生产力"]
+  arxiv_categories: []  # 此题不用 arXiv
+
+sources:
+  gov_zhengce:
+    enabled: true
+    type: html_scraper
+    label: "中国政府网·政策"
+    list_url: "https://www.gov.cn/zhengce/"
+    base_url: "https://www.gov.cn/zhengce/"
+    max_results: 10
+
+  xinhua_tech:
+    enabled: true
+    type: html_scraper
+    label: "新华网·科技"
+    list_url: "http://www.news.cn/tech/"
+    base_url: "http://www.news.cn/tech/"
+    max_results: 10
+
+  stdaily:
+    enabled: true
+    type: html_scraper
+    label: "科技日报"
+    list_url: "https://www.stdaily.com/"
+    base_url: "https://www.stdaily.com/"
+    max_results: 10
+
+  most:
+    enabled: true
+    type: html_scraper
+    label: "科技部"
+    list_url: "https://www.most.gov.cn/kjbgz/"
+    base_url: "https://www.most.gov.cn/kjbgz/"
+    max_results: 10
+
+limits:
+  per_source_summary_tokens: 600
+  max_items: 6
+
+delivery:
+  channel: feishu
+  title: "📡 科技政策播报 · 每日速览"

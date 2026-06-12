@@ -1,0 +1,7 @@
+anthropic>=0.39
+httpx>=0.27
+python-dotenv>=1.0
+pyyaml>=6.0
+feedparser>=6.0        # 解析 arXiv 的 Atom XML
+beautifulsoup4>=4.12   # 解析 GitHub Trending 的 HTML（无官方 API）
+pytest>=8.0
