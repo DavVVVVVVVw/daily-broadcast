@@ -1,6 +1,3 @@
-# 科技政策播报 · GitHub Actions 工作流（独立于 AI 播报）
-# 每天 UTC 01:47 = 北京 09:47（比 AI 播报晚半小时，错峰）
-
 name: tech-policy-broadcast
 
 on:
