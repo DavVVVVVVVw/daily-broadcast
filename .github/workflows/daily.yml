@@ -13,7 +13,7 @@ name: daily-broadcast
 
 on:
   schedule:
-    - cron: "3 2 * * 1,3,5,0"    # UTC 02:03 = 北京 10:03，周一三五日
+    - cron: "3 2 * * 5"           # UTC 02:03 = 北京 10:03，周五
   workflow_dispatch: {}          # 也能在 Actions 页点「Run workflow」立刻手动测一次
 
 permissions:
