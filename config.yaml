@@ -14,9 +14,9 @@ interests:
   arxiv_categories: ["cs.AI", "cs.LG", "math.OC", "cs.NI", "cs.DC"]
 
 sources:
-  arxiv:           { enabled: true, max_results: 8 }
-  hackernews:      { enabled: true, top_n: 15, min_points: 50 }
-  github_trending: { enabled: true, language: "python", since: "daily", top_n: 10 }
+  arxiv:           { type: arxiv, enabled: true, max_results: 8 }
+  hackernews:      { type: hackernews, enabled: true, top_n: 15, min_points: 50 }
+  github_trending: { type: github_trending, enabled: true, language: "python", since: "daily", top_n: 10 }
 
 limits:
   # 隔离纪律：每个数据源的子 agent 最多回传这么多 token 的摘要给主流程
