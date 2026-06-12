@@ -9,7 +9,6 @@
 # ⚠️ 密钥放 仓库 Settings → Secrets and variables → Actions（绝不写进这个 YAML —— kp-04「凭据即密码」）。
 #    注意：Secret 名字【不能以 GITHUB_ 开头】（GitHub 保留），所以 token 这个 secret 叫 GH_BROADCAST_TOKEN。
 
-# refresh trigger
 name: daily-broadcast
 
 on:
